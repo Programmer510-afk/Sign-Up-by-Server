@@ -41,13 +41,13 @@ app.post('/api/signup', async (req, res) => {
 
     const storedEmail = result.data.values?.[0]?.[0];
     if (storedEmail !== email) {
-      return res.status(403).json({ success: false, error: "Email mismatch in A1 cell." });
+      return res.status(403).json({ success: false, error: "Email mismatch in Server." });
     }
 
-    // ✅ Step 2: Update A3 with password
+    // ✅ Step 2: Update A2 with password
     await sheets.spreadsheets.values.update({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${sheetName}!A3`,
+      range: `${sheetName}!A2`,
       valueInputOption: "RAW",
       requestBody: { values: [[password]] },
     });
